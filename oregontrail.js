@@ -1,58 +1,65 @@
-function Traveler (name, food, healthy) {
-this.name = name
-this.food = food
-this.isHealthy = true
+function Traveler (name, food, isHealthy) {
+this.name = name;
+this.food = 1;
+this.isHealthy = true;
 }
+
 Traveler.prototype = {
 constructor: Traveler,
-hunt: functiion () {
+hunt: function () {
     this.food += 2
-    this.isHealthy = true
-}
-}
+},
+
 eat: function () {
-if (this.food > 0){
-    this.eat -= 1
+if (this.food >= 1){
+    this.food -= 1
 }else{
     this.isHealthy = false
 }
 }
-
-function Wagon (capacity, passengers) {
-this.capacity = capacity
-this.passengers= []
+}
+function Wagon (capacity, wagon) {
+this.capacity = capacity;
+this.passengers = [];
 }
 
 Wagon.prototype = {
 constructor: Wagon,
 getAvailableSeatCount: function () {
-this.capacity >= this.passengers
+let seatCount = this.capacity - this.passengers.length
+if (seatCount > 0) {
+    return seatCount
+} else {
+    return 0
 }
-return {
-    this.capacity -= this.passengers
-}
-}
+},
 
-join(traveler) {
-    if (this.getAvailableSeatCount >= 1)
 
-}
-this.passengers.push(traveler);
+join: function (traveler) {
+    if (this.getAvailableSeatCount() >= 1) {
+        this.passengers.push(traveler)
+    }
 
-shouldQurantine: function() {
+},
+
+
+shouldQuarantine: function() {
 for (let travelers of this.passengers) {
     if (travelers.isHealthy === false) {
-        return true
+        return true;
     }
-}
-return false
+    
+}return false;
+
+},
 
 totalFood: function() {
-     let resultsTotal = 0
+     let results = 0;
 for (let travelers of this.passengers){
 results += travelers.food
 }
-return resultsTotal
+return results;
+}
 }
 
 // Create a wagon that can hold 2 people
